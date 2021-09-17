@@ -16,12 +16,33 @@ Total Sales: $65,000.00
 
 Total Earnings: $1184.38
 
+main method to call other methods
+input method to get input
+calculation method to calculate
+output method to output info
  */
-
+import javax.swing.*;
+import java.text.DecimalFormat;
 public class SalesCommission {
 
     public static void main(String[] args) {
+        double hourlyRate = Double.parseDouble(JOptionPane.showInputDialog("What is the hourly rate at which you get paid?"));
+        double hoursWorked = Double.parseDouble(JOptionPane.showInputDialog("How many hours did you work?"));
+        double salesCommission = Double.parseDouble(JOptionPane.showInputDialog("What is the sales commission percentage?"));
+        double totalSales = Double.parseDouble(JOptionPane.showInputDialog("What is the total sales?"));
 
+        calculate(hourlyRate, hoursWorked, totalSales,salesCommission);
+        DecimalFormat round = new DecimalFormat("#,###.00");
+        JOptionPane.showMessageDialog(null, "Your total earnings are: $" + round.format(calculate(hourlyRate, hoursWorked, totalSales,salesCommission)));
+        System.exit(0);
     }
+
+
+    private static double calculate(Double hourlyRate, Double hoursWorked, Double totalSales, Double salesCommission) {
+        double earnings = hourlyRate * hoursWorked + (totalSales *(salesCommission/100));
+        return earnings;
+    }
+
+
 
 }
